@@ -9,8 +9,6 @@ WORKPATH="$4"
 CACHE="$5"
 PROFILE="$6"
 
-if [ -z "$VERSION" ]; then VERSION="$DEFAULT_VERSION"; fi
-
 function opt() {
     local OPT="$1"
     local VALUE="$2"
