@@ -93,8 +93,11 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: "into-docker/build-action@${{ steps.version.outputs.value }}"
           body: |
-            This it the [into-docker][] build action version ` ${{ steps.version.outputs.value }}`,
-            allowing you to run any into-docker builder image as a Github Action.
+            This it the [into-docker][] build action version `${{ steps.version.outputs.value }}`, allowing you to run any into-docker builder image as a Github Action.
+
+            **Changes**
+
+            - TODO
 
             **Usage**
 
@@ -107,6 +110,9 @@ jobs:
                 cache: cache-file.tar
             ```
 
+            See the [README][] for further options.
+
             [into-docker]: https://github.com/into-docker/into-docker
+            [README]: https://github.com/into-docker/build-action/blob/${{ steps.version.outputs.value }}/README.md
           draft: true
           prerelease: false
