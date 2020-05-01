@@ -6,4 +6,4 @@ COPY download.sh /dist/download.sh
 RUN /dist/download.sh "${DEFAULT_VERSION}"
 
 COPY entrypoint.sh /dist/entrypoint.sh
-ENTRYPOINT [ "/dist/entrypoint.sh" "${DEFAULT_VERSION}" ]
+ENTRYPOINT [ "/dist/entrypoint.sh" ]
