@@ -1,0 +1,58 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # extract tag that the action expects
+      - name: extract-version
+        id: version
+        run: >
+          export VERSION=$(cat action.yml | \
+            grep "docker://intodocker/build-action:" | \
+            rev | cut -d: -f1 | cut -c2- | rev) && \
+          echo ::set-output name=value::${VERSION}
+
+      # build action
+      - name: build-docker-image
+        uses: docker/build-push-action@v1
+        with:
+          repository: intodocker/build-action
+          tags: ${{ steps.version.outputs.value }}
+          push: false
+
+      # verify functionality
+      - name: build-test-image
+        uses: ./
+        with:
+          builder: intodocker/clojure
+          image: test-image
+          cache: cache.tar
+          path: test
+      - name: verify-cache-exists
+        run: test -f cache.tar
+      - name: build-test-image-with-cache
+        uses: ./
+        with:
+          builder: intodocker/clojure
+          image: test-image
+          cache: cache.tar
+          path: test
+      - name: verify-test-image
+        run: test "x$(docker run --rm test-image:latest)" = "xOK"
+
+      # push action to dockerhub
+      - name: verify-version-match
+        if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+        run: test "x${{ steps.version.outputs.value }}" = "${GITHUB_REF:10}"
+
+      - name: publish-docker-image
+        if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+        run: >
+          echo "${{ secrets.DOCKER_PASSWORD }}" | \
+            docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin && \
+            docker push "intodocker/build-action:${{ steps.version.outputs.value }}"

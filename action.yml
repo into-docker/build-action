@@ -1,0 +1,33 @@
+name: "into-docker"
+description: "Use the into-docker CLI tool to build a Docker image"
+inputs:
+  version:
+    description: "Version of the CLI tool"
+    required: true
+    default: "1.0.0-RC3"
+  builder:
+    description: "Builder image to use"
+    required: true
+  image:
+    description: 'Docker image to build (in the format "name:tag")'
+    required: true
+  path:
+    description: "Path, relative to the project root, to use for the build"
+    required: true
+    default: "."
+  cache:
+    description: "Cache archive to use and create"
+    required: false
+  profile:
+    description: "Build profile to use"
+    required: false
+runs:
+  using: "docker"
+  image: "docker://intodocker/build-action:v1"
+  args:
+    - ${{ inputs.version }}
+    - ${{ inputs.builder }}
+    - ${{ inputs.image }}
+    - ${{ inputs.path }}
+    - ${{ inputs.cache }}
+    - ${{ inputs.profile }}
