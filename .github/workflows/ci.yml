@@ -58,3 +58,38 @@ jobs:
           echo "${{ secrets.DOCKER_PASSWORD }}" | \
             docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin && \
             docker push "intodocker/build-action:${{ steps.version.outputs.value }}"
+
+  create-release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - name: export-version
+        id: version
+        run: echo ::set-output name=value::${GITHUB_REF:10}
+      - name: create-release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Version ${{ steps.version.outputs.value }}
+          body: |
+            This it the [into-docker][] build action version ` ${{ steps.version.outputs.value }}`,
+            allowing you to run any into-docker builder image as a Github Action.
+
+            **Usage**
+
+            ```
+            - uses: into-docker/build-action@${{ steps.version.outputs.value }}
+              with:
+                image: target-image:latest
+                builder: intodocker/clojure
+                profile: default
+                cache: cache-file.tar
+            ```
+
+            [into-docker]: https://github.com/into-docker/into-docker
+          draft: true
+          prerelease: false
