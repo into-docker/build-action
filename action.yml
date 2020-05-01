@@ -14,11 +14,11 @@ inputs:
   image:
     description: 'Docker image to build (in the format "name:tag")'
     required: true
-  path:
+  source-path:
     description: "Path, relative to the project root, to use for the build"
     required: true
     default: "."
-  cache:
+  cache-path:
     description: "Cache archive to use and create"
     required: false
   profile:
@@ -31,6 +31,6 @@ runs:
     - ${{ inputs.version }}
     - ${{ inputs.builder }}
     - ${{ inputs.image }}
-    - ${{ inputs.path }}
-    - ${{ inputs.cache }}
+    - ${{ inputs.source-path }}
+    - ${{ inputs.cache-path }}
     - ${{ inputs.profile }}
