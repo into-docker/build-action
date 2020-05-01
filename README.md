@@ -1,6 +1,7 @@
 # into-docker/build-action
 
 [![CI](https://github.com/into-docker/build-action/workflows/CI/badge.svg)](https://github.com/into-docker/build-action/actions?query=workflow%3ACI)
+[![Release](https://img.shields.io/github/v/release/into-docker/build-action?include_prereleases&sort=semver)](https://github.com/into-docker/build-action/releases/latest)
 
 This is a [Github Action][gha] to run Docker builds using the [into-docker][]
 CLI tool.
