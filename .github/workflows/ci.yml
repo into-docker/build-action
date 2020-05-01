@@ -50,7 +50,7 @@ jobs:
       # push action to dockerhub
       - name: verify-version-match
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
-        run: test "x${{ steps.version.outputs.value }}" = "${GITHUB_REF:10}"
+        run: test "x${{ steps.version.outputs.value }}" = "x${GITHUB_REF:10}"
 
       - name: publish-docker-image
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
