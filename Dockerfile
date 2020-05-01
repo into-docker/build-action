@@ -1,5 +1,5 @@
 FROM busybox:glibc
-ARG DEFAULT_VERSION="1.0.0-RC3"
+ARG DEFAULT_VERSION="1.0.0-RC4"
 
 RUN mkdir /dist && mkdir -p /var/tmp
 COPY download.sh /dist/download.sh

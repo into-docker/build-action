@@ -26,6 +26,7 @@ echo
 
 echo "--- Building ..."
 /dist/into -v build \
+    --ci "github-actions" \
     --tag "$TAG" \
     $(opt "--cache" "$CACHE") \
     $(opt "--profile" "$PROFILE") \
