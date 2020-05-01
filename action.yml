@@ -6,8 +6,7 @@ branding:
 inputs:
   version:
     description: "Version of the CLI tool"
-    required: true
-    default: "1.0.0-RC3"
+    required: false
   builder:
     description: "Builder image to use"
     required: true

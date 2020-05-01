@@ -2,12 +2,15 @@
 
 set -eu
 
-VERSION="$1"
-BUILDER="$2"
-TAG="$3"
-WORKPATH="$4"
-CACHE="$5"
-PROFILE="$6"
+DEFAULT_VERSION="$1"
+VERSION="$2"
+BUILDER="$3"
+TAG="$4"
+WORKPATH="$5"
+CACHE="$6"
+PROFILE="$7"
+
+if [ -z "$VERSION" ]; then VERSION="$DEFAULT_VERSION"; fi
 
 function opt() {
     local OPT="$1"
