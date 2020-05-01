@@ -1,5 +1,8 @@
 name: "into-docker"
 description: "Use the into-docker CLI tool to build a Docker image"
+branding:
+  icon: "terminal"
+  color: "yellow"
 inputs:
   version:
     description: "Version of the CLI tool"
