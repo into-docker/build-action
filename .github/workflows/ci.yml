@@ -3,7 +3,24 @@ name: CI
 on: [push]
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - name: install-prettier
+        run: npm install
+      - name: run-prettier
+        uses: samuelmeuli/lint-action@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          prettier: true
+
   build:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -31,8 +48,8 @@ jobs:
         with:
           builder: intodocker/clojure
           image: test-image
-          cache: cache.tar
-          path: test
+          cache-path: cache.tar
+          source-path: test
       - name: verify-cache-exists
         run: test -f cache.tar
       - name: build-test-image-with-cache
@@ -40,8 +57,8 @@ jobs:
         with:
           builder: intodocker/clojure
           image: test-image
-          cache: cache.tar
-          path: test
+          cache-path: cache.tar
+          source-path: test
       - name: inspect-test-image
         run: docker inspect test-image:latest
       - name: verify-test-image
