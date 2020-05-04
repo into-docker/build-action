@@ -26,14 +26,15 @@ CLI tool.
 
 ## Inputs
 
-| Name          | Required | Description                                                |
-| :------------ | :------: | :--------------------------------------------------------- |
-| `builder`     |   Yes    | The [into-docker][] builder image to use.                  |
-| `image`       |   Yes    | The target image that should be created (`name:tag`)       |
-| `source-path` |    No    | Path, relative to the project root, to use as build source |
-| `cache-path`  |    No    | Path to a cache archive that should be used/created        |
-| `profile`     |    No    | Build profile (provided by the builder image) to use       |
-| `version`     |    No    | Specific version of the CLI tool to use                    |
+| Name             | Required | Description                                                     |
+| :--------------- | :------: | :-------------------------------------------------------------- |
+| `builder`        |   Yes    | The [into-docker][] builder image to use.                       |
+| `image`          |   Yes    | The target image that should be created (`name:tag`)            |
+| `source-path`    |    No    | Path, relative to the project root, to use as build source      |
+| `artifacts-path` |    No    | Path, relative to the project root, to write build artifacts to |
+| `cache-path`     |    No    | Path to a cache archive that should be used/created             |
+| `profile`        |    No    | Build profile (provided by the builder image) to use            |
+| `version`        |    No    | Specific version of the CLI tool to use                         |
 
 ## Outputs
 

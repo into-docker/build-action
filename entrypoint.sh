@@ -5,9 +5,10 @@ set -eu
 VERSION="$1"
 BUILDER="$2"
 TAG="$3"
-WORKPATH="$4"
-CACHE="$5"
-PROFILE="$6"
+SOURCE_PATH="$4"
+ARTIFACTS_PATH="$5"
+CACHE_PATH="$6"
+PROFILE="$7"
 
 function opt() {
     local OPT="$1"
@@ -33,8 +34,9 @@ echo
 echo "--- Building ..."
 /dist/into -v build \
     --ci "github-actions" \
-    --tag "$TAG" \
-    $(opt "--cache" "$CACHE") \
+    $(opt "--tag" "$TAG") \
+    $(opt "--cache" "$CACHE_PATH") \
     $(opt "--profile" "$PROFILE") \
+    $(opt "--write-artifacts" "$ARTIFACTS_PATH") \
     "$BUILDER" \
-    "$GITHUB_WORKSPACE/${WORKPATH}"
+    "$GITHUB_WORKSPACE/$SOURCE_PATH"

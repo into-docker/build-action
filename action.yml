@@ -12,11 +12,14 @@ inputs:
     required: true
   image:
     description: 'Docker image to build (in the format "name:tag")'
-    required: true
+    required: false
   source-path:
     description: "Path, relative to the project root, to use for the build"
     required: true
     default: "."
+  artifacts-path:
+    description: "Path to write the artifacts created in the build phase to."
+    required: false
   cache-path:
     description: "Cache archive to use and create"
     required: false
@@ -31,5 +34,6 @@ runs:
     - ${{ inputs.builder }}
     - ${{ inputs.image }}
     - ${{ inputs.source-path }}
+    - ${{ inputs.artifacts-path }}
     - ${{ inputs.cache-path }}
     - ${{ inputs.profile }}

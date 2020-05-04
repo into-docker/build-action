@@ -49,9 +49,12 @@ jobs:
           builder: intodocker/clojure
           image: test-image
           cache-path: cache.tar
+          artifacts-path: target/artifacts
           source-path: test
       - name: verify-cache-exists
         run: test -f cache.tar
+      - name: verify-artifacts-were-written
+        run: test -f target/artifacts/app.jar
       - name: build-test-image-with-cache
         uses: ./
         with:
