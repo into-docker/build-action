@@ -21,7 +21,9 @@ inputs:
     description: "Path to write the artifacts created in the build phase to."
     required: false
   cache-path:
-    description: "Cache archive to use and create"
+    description: >
+      Cache archive to create. If this file exists it will be used to provide
+      cached files to the build.
     required: false
   profile:
     description: "Build profile to use"
