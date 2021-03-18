@@ -59,7 +59,7 @@ jobs:
       - name: verify-artifacts-were-written
         run: test -f target/artifacts/app.jar
 
-        # verify: cache usage
+      # verify: cache usage
       - name: build-test-image-with-cache
         uses: ./
         with:
@@ -71,6 +71,19 @@ jobs:
         run: docker inspect test-image:latest
       - name: verify-test-image
         run: test "x$(docker run --rm test-image:latest)" = "xOK"
+
+      # verify: explicit version usage
+      - name: build-test-image-explicit-version
+        uses: ./
+        with:
+          builder: intodocker/clojure
+          image: test-image-explicit
+          source-path: test
+          version: 1.1.0-RC1
+      - name: inspect-test-image-explicit-version
+        run: docker inspect test-image-explicit:latest
+      - name: verify-test-image-explicit-version
+        run: test "x$(docker run --rm test-image-explicit:latest)" = "xOK"
 
       # push action to dockerhub
       - name: verify-version-match
