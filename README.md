@@ -9,19 +9,35 @@ CLI tool.
 
 ## Usage
 
+**Build**
+
 ```yaml
 - uses: into-docker/build-action@v1
   with:
     image: target-image:latest
     builder: intodocker/clojure
-    profile: default
-    cache-path: cache-file.tar
 
 # optional: push to docker registry
 - run: >
     echo ${{ secrets.DOCKER_PASSWORD }} | \
       docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin && \
       docker push target-image:latest
+```
+
+**Build + Caching**
+
+```yaml
+- uses: actions/cache@v2
+  with:
+    path: cache-file.tar
+    key: ${{ runner.os }}-${{ hashFiles('project.clj') }}
+
+- uses: into-docker/build-action@v1
+  with:
+    image: target-image:latest
+    builder: intodocker/clojure
+    cache-path: cache-file.tar
+# ...
 ```
 
 ## Inputs
