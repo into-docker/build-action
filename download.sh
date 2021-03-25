@@ -4,9 +4,13 @@ set -eu
 
 VERSION="$1"
 FILE="/dist/into-${VERSION}.zip"
+URL=""
 
-if [ ! -f "$FILE" ]; then
-    URL="https://github.com/into-docker/into-docker/releases/download/v${VERSION}/into-${VERSION}-linux-amd64-static.zip"
-    wget -O "$FILE" "$URL"
+if [ -z "$VERSION" ]; then
+    VERSION="${DEFAULT_VERSION:-1.0.0}"
 fi
+
+URL="https://github.com/into-docker/into-docker/releases/download/v${VERSION}/into-${VERSION}-linux-amd64-static.zip"
+wget -O "$FILE" "$URL"
+
 echo "$FILE"

@@ -19,14 +19,8 @@ function opt() {
     fi
 }
 
-ZIP=""
-if [ -z "$VERSION" ]; then
-    echo "--- Extracting CLI tool"
-    ZIP=$(ls /dist/into-*.zip)
-else
-    echo "--- Downloading and extracting CLI tool ..."
-    ZIP=$(/dist/download.sh "$VERSION")
-fi
+echo "--- Downloading and extracting CLI tool ..."
+ZIP=$(/dist/download.sh "$VERSION")
 unzip -d /dist "$ZIP"
 chmod +x /dist/into
 echo
