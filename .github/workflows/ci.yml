@@ -7,14 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Node.js
+      - name: setup-node
         uses: actions/setup-node@v1
         with:
           node-version: 10
       - name: install-prettier
         run: npm install
       - name: run-prettier
-        uses: samuelmeuli/lint-action@v1
+        uses: wearerequired/lint-action@v1
         with:
           github_token: ${{ secrets.github_token }}
           prettier: true
