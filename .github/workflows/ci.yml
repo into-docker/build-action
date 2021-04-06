@@ -78,15 +78,13 @@ jobs:
 
             - TODO
 
-            **Usage**
+            **Basic Usage**
 
             ```
             - uses: into-docker/build-action@${{ steps.version.outputs.value }}
               with:
                 image: target-image:latest
                 builder: intodocker/clojure
-                profile: default
-                cache: cache-file.tar
             ```
 
             See the [README][] for further options.
