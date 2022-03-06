@@ -33,6 +33,6 @@ echo "--- Building ..."
     $(opt "--cache" "$CACHE_PATH") \
     $(opt "--profile" "$PROFILE") \
     $(opt "--write-artifacts" "$ARTIFACTS_PATH") \
-    $(opt "--platform" "$PLATFORM")
+    $(opt "--platform" "$PLATFORM") \
     "$BUILDER" \
     "$GITHUB_WORKSPACE/$SOURCE_PATH"
