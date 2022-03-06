@@ -12,7 +12,7 @@ CLI tool.
 **Build**
 
 ```yaml
-- uses: into-docker/build-action@v2
+- uses: into-docker/build-action@v3
   with:
     image: target-image:latest
     builder: intodocker/clojure
@@ -32,7 +32,7 @@ CLI tool.
     path: cache-file.tar
     key: ${{ runner.os }}-${{ hashFiles('project.clj') }}
 
-- uses: into-docker/build-action@v2
+- uses: into-docker/build-action@v3
   with:
     image: target-image:latest
     builder: intodocker/clojure
@@ -46,7 +46,7 @@ Make sure that you're providing a `.buildenv` file as outlined [here][buildenv].
 Afterwards, you can use the usual Github Actions `env` clause to supply them.
 
 ```yaml
-- uses: into-docker/build-action@v2
+- uses: into-docker/build-action@v3
   with:
     image: target-image:latest
     builder: intodocker/clojure
@@ -64,7 +64,7 @@ desired target platform:
 
 ```yaml
 - uses: docker/setup-qemu-action@v1
-- uses: into-docker/build-action@v2
+- uses: into-docker/build-action@v3
   with:
     image: target-image:latest
     builder: intodocker/clojure
