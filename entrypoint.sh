@@ -8,7 +8,8 @@ TAG="$3"
 SOURCE_PATH="$4"
 ARTIFACTS_PATH="$5"
 CACHE_PATH="$6"
-PROFILE="$7"
+PLATFORM="$7"
+PROFILE="$8"
 
 function opt() {
     local OPT="$1"
@@ -32,5 +33,6 @@ echo "--- Building ..."
     $(opt "--cache" "$CACHE_PATH") \
     $(opt "--profile" "$PROFILE") \
     $(opt "--write-artifacts" "$ARTIFACTS_PATH") \
+    $(opt "--platform" "$PLATFORM")
     "$BUILDER" \
     "$GITHUB_WORKSPACE/$SOURCE_PATH"

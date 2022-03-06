@@ -57,6 +57,22 @@ Afterwards, you can use the usual Github Actions `env` clause to supply them.
 
 [buildenv]: https://github.com/into-docker/into-docker#secrets-experimental
 
+**Build + Platform**
+
+You'll need to run the [setup-qemu-action][] first, then you can supply the
+desired target platform:
+
+```yaml
+- uses: docker/setup-qemu-action@v1
+- uses: into-docker/build-action@v2
+  with:
+    image: target-image:latest
+    builder: intodocker/clojure
+    platform: linux/arm64
+```
+
+[setup-qemu-action]: https://github.com/docker/setup-qemu-action
+
 ## Inputs
 
 | Name             | Required | Description                                                     |
@@ -67,6 +83,7 @@ Afterwards, you can use the usual Github Actions `env` clause to supply them.
 | `artifacts-path` |    No    | Path, relative to the project root, to write build artifacts to |
 | `cache-path`     |    No    | Path to a cache archive that should be used/created             |
 | `profile`        |    No    | Build profile (provided by the builder image) to use            |
+| `platform`       |    No    | The target platform to build for (needs into-docker >= 1.1.4)   |
 | `version`        |    No    | Specific version of the CLI tool to use                         |
 
 ## Outputs

@@ -25,6 +25,9 @@ inputs:
       Cache archive to create. If this file exists it will be used to provide
       cached files to the build.
     required: false
+  platform:
+    description: "Target platform to build for."
+    required: false
   profile:
     description: "Build profile to use"
     required: false
@@ -38,4 +41,5 @@ runs:
     - ${{ inputs.source-path }}
     - ${{ inputs.artifacts-path }}
     - ${{ inputs.cache-path }}
+    - ${{ inputs.platform }}
     - ${{ inputs.profile }}
