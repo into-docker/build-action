@@ -6,23 +6,22 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: setup-node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 10
+          node-version: 16
       - name: install-prettier
         run: npm install
       - name: run-prettier
-        uses: wearerequired/lint-action@v1
+        uses: wearerequired/lint-action@v2
         with:
-          github_token: ${{ secrets.github_token }}
           prettier: true
 
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: build-test-image-basic
         uses: ./
@@ -62,7 +61,7 @@ jobs:
     steps:
       - name: export-version
         id: version
-        run: echo ::set-output name=value::${GITHUB_REF:10}
+        run: echo "value=${GITHUB_REF:10}" >> "$GITHUB_OUTPUT"
       - name: create-release
         id: create_release
         uses: actions/create-release@latest
