@@ -12,7 +12,7 @@ CLI tool.
 **Build**
 
 ```yaml
-- uses: into-docker/build-action@v3
+- uses: into-docker/build-action@v4
   with:
     image: target-image:latest
     builder: intodocker/clojure
@@ -32,7 +32,7 @@ CLI tool.
     path: cache-file.tar
     key: ${{ runner.os }}-${{ hashFiles('project.clj') }}
 
-- uses: into-docker/build-action@v3
+- uses: into-docker/build-action@v4
   with:
     image: target-image:latest
     builder: intodocker/clojure
@@ -46,7 +46,7 @@ Make sure that you're providing a `.buildenv` file as outlined [here][buildenv].
 Afterwards, you can use the usual Github Actions `env` clause to supply them.
 
 ```yaml
-- uses: into-docker/build-action@v3
+- uses: into-docker/build-action@v4
   with:
     image: target-image:latest
     builder: intodocker/clojure
@@ -63,8 +63,8 @@ You'll need to run the [setup-qemu-action][] first, then you can supply the
 desired target platform:
 
 ```yaml
-- uses: docker/setup-qemu-action@v1
-- uses: into-docker/build-action@v3
+- uses: docker/setup-qemu-action@v3
+- uses: into-docker/build-action@v4
   with:
     image: target-image:latest
     builder: intodocker/clojure
@@ -104,7 +104,7 @@ Please run `yarn` or `npm install` to register the pre-commit hook.
 ```
 MIT License
 
-Copyright (c) 2020 Yannick Scherer
+Copyright (c) 2020-2023 Yannick Scherer
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
